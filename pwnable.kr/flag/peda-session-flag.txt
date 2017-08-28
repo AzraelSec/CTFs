@@ -1,0 +1,7 @@
+break *0x401058
+tbreak main
+tbreak main
+tbreak main
+break *_start
+tbreak main
+
