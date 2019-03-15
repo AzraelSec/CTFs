@@ -1,0 +1,2039 @@
+-- ----------------------------------------------------------
+-- MDB Tools - A library for reading MS Access database files
+-- Copyright (C) 2000-2011 Brian Bruns and others.
+-- Files in libmdb are licensed under LGPL and the utilities under
+-- the GPL, see COPYING.LIB and COPYING files respectively.
+-- Check out http://mdbtools.sourceforge.net
+-- ----------------------------------------------------------
+
+-- That file uses encoding UTF-8
+
+CREATE TABLE [acc_antiback]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[device_id]			Long Integer, 
+	[one_mode]			Boolean NOT NULL, 
+	[two_mode]			Boolean NOT NULL, 
+	[three_mode]			Boolean NOT NULL, 
+	[four_mode]			Boolean NOT NULL, 
+	[five_mode]			Boolean NOT NULL, 
+	[six_mode]			Boolean NOT NULL, 
+	[seven_mode]			Boolean NOT NULL, 
+	[eight_mode]			Boolean NOT NULL, 
+	[nine_mode]			Boolean NOT NULL, 
+	[AntibackType]			Long Integer
+);
+
+CREATE TABLE [acc_door]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[device_id]			Long Integer, 
+	[door_no]			Long Integer, 
+	[door_name]			Text (100), 
+	[lock_delay]			Long Integer, 
+	[back_lock]			Boolean NOT NULL, 
+	[sensor_delay]			Long Integer, 
+	[opendoor_type]			Long Integer, 
+	[inout_state]			Long Integer, 
+	[lock_active_id]			Long Integer, 
+	[long_open_id]			Long Integer, 
+	[wiegand_fmt_id]			Long Integer, 
+	[card_intervaltime]			Long Integer, 
+	[reader_type]			Long Integer, 
+	[is_att]			Boolean NOT NULL, 
+	[door_sensor_status]			Long Integer, 
+	[map_id]			Long Integer, 
+	[duration_apb]			Long Integer, 
+	[force_pwd]			Text (200), 
+	[supper_pwd]			Text (200), 
+	[reader_io_state]			Long Integer, 
+	[open_door_delay]			Long Integer, 
+	[door_normal_open]			Boolean NOT NULL, 
+	[enable_normal_open]			Boolean NOT NULL, 
+	[disenable_normal_open]			Boolean NOT NULL, 
+	[wiegandInType]			Integer, 
+	[wiegandOutType]			Integer, 
+	[wiegand_fmt_out_id]			Integer, 
+	[SRBOn]			Integer, 
+	[ManualCtlMode]			Long Integer, 
+	[ErrTimes]			Long Integer, 
+	[SensorAlarmTime]			Long Integer, 
+	[InTimeAPB]			Long Integer
+);
+
+CREATE TABLE [acc_firstopen]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[door_id]			Long Integer, 
+	[timeseg_id]			Long Integer
+);
+
+CREATE TABLE [acc_firstopen_emp]
+ (
+	[id]			Long Integer, 
+	[accfirstopen_id]			Long Integer, 
+	[employee_id]			Long Integer
+);
+
+CREATE TABLE [acc_holidays]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer NOT NULL, 
+	[holiday_name]			Text (100), 
+	[holiday_type]			Long Integer, 
+	[start_date]			DateTime NOT NULL, 
+	[end_date]			DateTime NOT NULL, 
+	[loop_by_year]			Long Integer, 
+	[memo]			Text (100), 
+	[HolidayNo]			Long Integer, 
+	[HolidayTZ]			Long Integer
+);
+
+CREATE TABLE [acc_interlock]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			Long Integer, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[device_id]			Long Integer, 
+	[one_mode]			Boolean NOT NULL, 
+	[two_mode]			Boolean NOT NULL, 
+	[three_mode]			Boolean NOT NULL, 
+	[four_mode]			Boolean NOT NULL, 
+	[InterlockType]			Long Integer
+);
+
+CREATE TABLE [acc_levelset]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[level_name]			Text (100), 
+	[level_timeseg_id]			Long Integer
+);
+
+CREATE TABLE [acc_levelset_door_group]
+ (
+	[id]			Long Integer, 
+	[acclevelset_id]			Long Integer NOT NULL, 
+	[accdoor_id]			Long Integer NOT NULL, 
+	[accdoor_no_exp]			Long Integer, 
+	[accdoor_device_id]			Long Integer, 
+	[level_timeseg_id]			Long Integer
+);
+
+CREATE TABLE [acc_linkageio]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			Text (100), 
+	[status]			Long Integer NOT NULL, 
+	[linkage_name]			Text (100), 
+	[device_id]			Long Integer, 
+	[trigger_opt]			Long Integer, 
+	[in_address_hide]			Long Integer, 
+	[in_address]			Long Integer, 
+	[out_type_hide]			Long Integer, 
+	[out_address_hide]			Long Integer, 
+	[out_address]			Long Integer, 
+	[action_type]			Long Integer, 
+	[delay_time]			Long Integer, 
+	[video_linkageio_id]			Long Integer, 
+	[lchannel_num]			Long Integer
+);
+
+CREATE TABLE [acc_map]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer NOT NULL, 
+	[map_name]			Text (100), 
+	[map_path]			Memo/Hyperlink (255), 
+	[area_id]			Long Integer, 
+	[width]			Long Integer, 
+	[height]			Long Integer
+);
+
+CREATE TABLE [acc_mapdoorpos]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer NOT NULL, 
+	[map_door_id]			Long Integer, 
+	[map_id]			Long Integer, 
+	[width]			Long Integer, 
+	[left]			Long Integer, 
+	[top]			Long Integer
+);
+
+CREATE TABLE [acc_morecardempgroup]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[group_name]			Text (100), 
+	[memo]			Text (100), 
+	[StdGroupNo]			Long Integer, 
+	[StdGroupTz]			Long Integer, 
+	[StdGroupVT]			Long Integer, 
+	[StdValidOnHoliday]			Boolean NOT NULL
+);
+
+CREATE TABLE [acc_morecardgroup]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[comb_id]			Long Integer, 
+	[group_id]			Long Integer, 
+	[opener_number]			Long Integer
+);
+
+CREATE TABLE [acc_timeseg]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[timeseg_name]			Text (100), 
+	[memo]			Text (100), 
+	[sunday_start1]			DateTime, 
+	[sunday_end1]			DateTime, 
+	[sunday_start2]			DateTime, 
+	[sunday_end2]			DateTime, 
+	[sunday_start3]			DateTime, 
+	[sunday_end3]			DateTime, 
+	[monday_start1]			DateTime, 
+	[monday_end1]			DateTime, 
+	[monday_start2]			DateTime, 
+	[monday_end2]			DateTime, 
+	[monday_start3]			DateTime, 
+	[monday_end3]			DateTime, 
+	[tuesday_start1]			DateTime, 
+	[tuesday_end1]			DateTime, 
+	[tuesday_start2]			DateTime, 
+	[tuesday_end2]			DateTime, 
+	[tuesday_start3]			DateTime, 
+	[tuesday_end3]			DateTime, 
+	[wednesday_start1]			DateTime, 
+	[wednesday_end1]			DateTime, 
+	[wednesday_start2]			DateTime, 
+	[wednesday_end2]			DateTime, 
+	[wednesday_start3]			DateTime, 
+	[wednesday_end3]			DateTime, 
+	[thursday_start1]			DateTime, 
+	[thursday_end1]			DateTime, 
+	[thursday_start2]			DateTime, 
+	[thursday_end2]			DateTime, 
+	[thursday_start3]			DateTime, 
+	[thursday_end3]			DateTime, 
+	[friday_start1]			DateTime, 
+	[friday_end1]			DateTime, 
+	[friday_start2]			DateTime, 
+	[friday_end2]			DateTime, 
+	[friday_start3]			DateTime, 
+	[friday_end3]			DateTime, 
+	[saturday_start1]			DateTime, 
+	[saturday_end1]			DateTime, 
+	[saturday_start2]			DateTime, 
+	[saturday_end2]			DateTime, 
+	[saturday_start3]			DateTime, 
+	[saturday_end3]			DateTime, 
+	[holidaytype1_start1]			DateTime, 
+	[holidaytype1_end1]			DateTime, 
+	[holidaytype1_start2]			DateTime, 
+	[holidaytype1_end2]			DateTime, 
+	[holidaytype1_start3]			DateTime, 
+	[holidaytype1_end3]			DateTime, 
+	[holidaytype2_start1]			DateTime, 
+	[holidaytype2_end1]			DateTime, 
+	[holidaytype2_start2]			DateTime, 
+	[holidaytype2_end2]			DateTime, 
+	[holidaytype2_start3]			DateTime, 
+	[holidaytype2_end3]			DateTime, 
+	[holidaytype3_start1]			DateTime, 
+	[holidaytype3_end1]			DateTime, 
+	[holidaytype3_start2]			DateTime, 
+	[holidaytype3_end2]			DateTime, 
+	[holidaytype3_start3]			DateTime, 
+	[holidaytype3_end3]			DateTime, 
+	[TimeZone1Id]			Long Integer, 
+	[TimeZone2Id]			Long Integer, 
+	[TimeZone3Id]			Long Integer, 
+	[TimeZoneHolidayId]			Long Integer
+);
+
+CREATE TABLE [acc_wiegandfmt]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[wiegand_name]			Text (100), 
+	[wiegand_count]			Long Integer, 
+	[odd_start]			Long Integer, 
+	[odd_count]			Long Integer, 
+	[even_start]			Long Integer, 
+	[even_count]			Long Integer, 
+	[cid_start]			Long Integer, 
+	[cid_count]			Long Integer, 
+	[comp_start]			Long Integer, 
+	[comp_count]			Long Integer
+);
+
+CREATE TABLE [ACGroup]
+ (
+	[GroupID]			Integer NOT NULL, 
+	[Name]			Text (60), 
+	[TimeZone1]			Integer, 
+	[TimeZone2]			Integer, 
+	[TimeZone3]			Integer, 
+	[holidayvaild]			Boolean NOT NULL, 
+	[verifystyle]			Long Integer
+);
+
+CREATE TABLE [acholiday]
+ (
+	[primaryid]			Long Integer, 
+	[holidayid]			Long Integer, 
+	[begindate]			DateTime, 
+	[enddate]			DateTime, 
+	[timezone]			Long Integer
+);
+
+CREATE TABLE [ACTimeZones]
+ (
+	[TimeZoneID]			Integer NOT NULL, 
+	[Name]			Text (60), 
+	[SunStart]			DateTime, 
+	[SunEnd]			DateTime, 
+	[MonStart]			DateTime, 
+	[MonEnd]			DateTime, 
+	[TuesStart]			DateTime, 
+	[TuesEnd]			DateTime, 
+	[WedStart]			DateTime, 
+	[WedEnd]			DateTime, 
+	[ThursStart]			DateTime, 
+	[ThursEnd]			DateTime, 
+	[FriStart]			DateTime, 
+	[FriEnd]			DateTime, 
+	[SatStart]			DateTime, 
+	[SatEnd]			DateTime
+);
+
+CREATE TABLE [action_log]
+ (
+	[id]			Long Integer, 
+	[action_time]			DateTime, 
+	[user_id]			Long Integer, 
+	[content_type_id]			Long Integer, 
+	[object_id]			Long Integer, 
+	[object_repr]			Text (100), 
+	[action_flag]			Long Integer, 
+	[change_message]			Text (100)
+);
+
+CREATE TABLE [AlarmLog]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[Operator]			Text (40), 
+	[EnrollNumber]			Text (60), 
+	[LogTime]			DateTime, 
+	[MachineAlias]			Text (40), 
+	[AlarmType]			Long Integer
+);
+
+CREATE TABLE [areaadmin]
+ (
+	[id]			Long Integer, 
+	[user_id]			Long Integer, 
+	[area_id]			Long Integer
+);
+
+CREATE TABLE [att_attreport]
+ (
+	[ItemName]			Text (100), 
+	[ItemType]			Text (100), 
+	[Author_id]			Long Integer, 
+	[ItemValue]			Text (100), 
+	[Published]			Long Integer
+);
+
+CREATE TABLE [att_waitforprocessdata]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[UserID_id]			Long Integer, 
+	[starttime]			DateTime, 
+	[endtime]			DateTime, 
+	[flag]			Long Integer
+);
+
+CREATE TABLE [attcalclog]
+ (
+	[id]			Long Integer, 
+	[DeptID]			Long Integer, 
+	[UserId]			Long Integer, 
+	[StartDate]			DateTime, 
+	[EndDate]			DateTime, 
+	[OperTime]			DateTime, 
+	[Type]			Long Integer
+);
+
+CREATE TABLE [attexception]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[UserId]			Long Integer, 
+	[StartTime]			DateTime, 
+	[EndTime]			DateTime, 
+	[ExceptionID]			Long Integer, 
+	[AuditExcID]			Long Integer, 
+	[OldAuditExcID]			Long Integer, 
+	[OverlapTime]			Long Integer, 
+	[TimeLong]			Long Integer, 
+	[InScopeTime]			Long Integer, 
+	[AttDate]			DateTime, 
+	[OverlapWorkDayTai]			Long Integer, 
+	[OverlapWorkDay]			Long Integer, 
+	[schindex]			Long Integer, 
+	[Minsworkday]			Long Integer, 
+	[Minsworkday1]			Long Integer, 
+	[schid]			Long Integer
+);
+
+CREATE TABLE [AuditedExc]
+ (
+	[AEID]			Long Integer NOT NULL, 
+	[UserId]			Long Integer, 
+	[CheckTime]			DateTime NOT NULL, 
+	[NewExcID]			Long Integer, 
+	[IsLeave]			Integer, 
+	[UName]			Text (40), 
+	[UTime]			DateTime NOT NULL
+);
+
+CREATE TABLE [auth_group_permissions]
+ (
+	[id]			Long Integer, 
+	[group_id]			Long Integer NOT NULL, 
+	[permission_id]			Long Integer NOT NULL
+);
+
+CREATE TABLE [auth_message]
+ (
+	[id]			Long Integer, 
+	[user_id]			Long Integer, 
+	[message]			Text (100)
+);
+
+CREATE TABLE [auth_permission]
+ (
+	[id]			Long Integer, 
+	[name]			Text (100), 
+	[content_type_id]			Long Integer, 
+	[codename]			Text (100)
+);
+
+CREATE TABLE [auth_user]
+ (
+	[id]			Long Integer, 
+	[username]			Text (100), 
+	[password]			Text (100), 
+	[Status]			Long Integer, 
+	[last_login]			DateTime, 
+	[RoleID]			Long Integer, 
+	[Remark]			Memo/Hyperlink (255)
+);
+
+CREATE TABLE [auth_user_groups]
+ (
+	[id]			Long Integer, 
+	[user_id]			Long Integer, 
+	[group_id]			Long Integer
+);
+
+CREATE TABLE [auth_user_user_permissions]
+ (
+	[id]			Long Integer, 
+	[user_id]			Long Integer, 
+	[permission_id]			Long Integer
+);
+
+CREATE TABLE [base_additiondata]
+ (
+	[id]			Long Integer, 
+	[create_time]			DateTime, 
+	[user_id]			Long Integer, 
+	[content_type_id]			Long Integer, 
+	[object_id]			Text (100), 
+	[key]			Text (100), 
+	[value]			Text (100), 
+	[data]			Text (100), 
+	[delete_time]			DateTime
+);
+
+CREATE TABLE [base_appoption]
+ (
+	[id]			Text (100), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[optname]			Text (100), 
+	[value]			Text (100), 
+	[discribe]			Text (100)
+);
+
+CREATE TABLE [base_basecode]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[content]			Text (100), 
+	[content_class]			Long Integer, 
+	[display]			Text (100), 
+	[value]			Text (100), 
+	[remark]			Text (100), 
+	[is_add]			Text (100)
+);
+
+CREATE TABLE [base_datatranslation]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[content_type_id]			Long Integer, 
+	[property]			Text (100), 
+	[language]			Text (100), 
+	[value]			Text (100), 
+	[display]			Text (100)
+);
+
+CREATE TABLE [base_operatortemplate]
+ (
+	[id]			Text (100), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[user_id]			Long Integer, 
+	[template1]			OLE (255), 
+	[finger_id]			Long Integer, 
+	[valid]			Long Integer, 
+	[fpversion]			Text (100), 
+	[bio_type]			Long Integer, 
+	[utime]			DateTime, 
+	[bitmap_picture]			OLE (255), 
+	[bitmap_picture2]			OLE (255), 
+	[bitmap_picture3]			OLE (255), 
+	[bitmap_picture4]			OLE (255), 
+	[use_type]			Long Integer, 
+	[template2]			OLE (255), 
+	[template3]			OLE (255), 
+	[template_flag]			Boolean NOT NULL
+);
+
+CREATE TABLE [base_personaloption]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[option_id]			Long Integer, 
+	[value]			Text (100), 
+	[user_id]			Long Integer
+);
+
+CREATE TABLE [base_strresource]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[app]			Text (100), 
+	[str]			Text (100)
+);
+
+CREATE TABLE [base_strtranslation]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[str_id]			Long Integer, 
+	[language]			Text (100), 
+	[display]			Text (100)
+);
+
+CREATE TABLE [base_systemoption]
+ (
+	[id]			Text (100), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[option_id]			Long Integer, 
+	[value]			Text (100)
+);
+
+CREATE TABLE [CHECKEXACT]
+ (
+	[EXACTID]			Long Integer, 
+	[USERID]			Long Integer, 
+	[CHECKTIME]			DateTime, 
+	[CHECKTYPE]			Text (4), 
+	[ISADD]			Integer, 
+	[YUYIN]			Text (50), 
+	[ISMODIFY]			Integer, 
+	[ISDELETE]			Integer, 
+	[INCOUNT]			Integer, 
+	[ISCOUNT]			Integer, 
+	[MODIFYBY]			Text (40), 
+	[DATE]			DateTime
+);
+
+CREATE TABLE [CHECKINOUT]
+ (
+	[USERID]			Long Integer NOT NULL, 
+	[CHECKTIME]			DateTime NOT NULL, 
+	[CHECKTYPE]			Text (2), 
+	[VERIFYCODE]			Long Integer, 
+	[SENSORID]			Text (10), 
+	[Memoinfo]			Text (60), 
+	[WorkCode]			Long Integer, 
+	[sn]			Text (40), 
+	[UserExtFmt]			Integer, 
+	[LOGID]			Long Integer NOT NULL, 
+	[MachineId]			Long Integer
+);
+
+CREATE TABLE [dbbackuplog]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[user_id]			Long Integer, 
+	[starttime]			DateTime, 
+	[imflag]			Boolean NOT NULL, 
+	[successflag]			Text (100)
+);
+
+CREATE TABLE [DEPARTMENTS]
+ (
+	[DEPTID]			Long Integer NOT NULL, 
+	[DEPTNAME]			Text (60), 
+	[SUPDEPTID]			Long Integer NOT NULL, 
+	[InheritParentSch]			Integer, 
+	[InheritDeptSch]			Integer, 
+	[InheritDeptSchClass]			Integer, 
+	[AutoSchPlan]			Integer, 
+	[InLate]			Integer, 
+	[OutEarly]			Integer, 
+	[InheritDeptRule]			Integer, 
+	[MinAutoSchInterval]			Long Integer, 
+	[RegisterOT]			Integer, 
+	[DefaultSchId]			Long Integer NOT NULL, 
+	[ATT]			Integer, 
+	[Holiday]			Integer, 
+	[OverTime]			Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[code]			Text (100), 
+	[type]			Text (100), 
+	[invalidate]			DateTime
+);
+
+CREATE TABLE [deptadmin]
+ (
+	[id]			Long Integer, 
+	[user_id]			Long Integer, 
+	[dept_id]			Long Integer
+);
+
+CREATE TABLE [DeptUsedSchs]
+ (
+	[DeptId]			Long Integer, 
+	[SchId]			Long Integer
+);
+
+CREATE TABLE [devcmds]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[SN_id]			Long Integer, 
+	[CmdOperate_id]			Long Integer, 
+	[CmdCommitTime]			DateTime, 
+	[CmdTransTime]			DateTime, 
+	[CmdOverTime]			DateTime, 
+	[CmdReturn]			Long Integer, 
+	[CmdReturnContent]			Text (100), 
+	[CmdImmediately]			Boolean NOT NULL, 
+	[CmdContent]			Memo/Hyperlink (255)
+);
+
+CREATE TABLE [devcmds_bak]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[SN_id]			Long Integer, 
+	[CmdOperate_id]			Long Integer, 
+	[CmdContent]			Text (100), 
+	[CmdCommitTime]			DateTime, 
+	[CmdTransTime]			DateTime, 
+	[CmdOverTime]			DateTime, 
+	[CmdReturn]			Long Integer, 
+	[CmdReturnContent]			Text (100), 
+	[CmdImmediately]			Boolean NOT NULL
+);
+
+CREATE TABLE [django_content_type]
+ (
+	[id]			Long Integer, 
+	[name]			Text (100), 
+	[app_label]			Text (100), 
+	[model]			Text (100)
+);
+
+CREATE TABLE [django_session]
+ (
+	[session_key]			Text (100), 
+	[session_data]			Text (100), 
+	[expire_date]			DateTime
+);
+
+CREATE TABLE [EmOpLog]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[USERID]			Long Integer NOT NULL, 
+	[OperateTime]			DateTime NOT NULL, 
+	[manipulationID]			Long Integer, 
+	[Params1]			Long Integer, 
+	[Params2]			Long Integer, 
+	[Params3]			Long Integer, 
+	[Params4]			Long Integer, 
+	[SensorId]			Text (10)
+);
+
+CREATE TABLE [empitemdefine]
+ (
+	[ItemName]			Text (100), 
+	[ItemType]			Text (100), 
+	[Author_id]			Long Integer, 
+	[ItemValue]			Text (100), 
+	[Published]			Long Integer
+);
+
+CREATE TABLE [EXCNOTES]
+ (
+	[USERID]			Long Integer, 
+	[ATTDATE]			DateTime, 
+	[NOTES]			Text (400)
+);
+
+CREATE TABLE [FaceTemp]
+ (
+	[TEMPLATEID]			Long Integer NOT NULL, 
+	[USERNO]			Text (48), 
+	[SIZE]			Long Integer, 
+	[pin]			Long Integer, 
+	[FACEID]			Long Integer, 
+	[VALID]			Long Integer, 
+	[RESERVE]			Long Integer, 
+	[ACTIVETIME]			Long Integer, 
+	[VFCOUNT]			Long Integer, 
+	[TEMPLATE]			OLE (255), 
+	[FaceType]			Byte, 
+	[StateMigrationFlag]			Text (12)
+);
+
+CREATE TABLE [iclock_dstime]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[dst_name]			Text (100), 
+	[mode]			Long Integer, 
+	[start_time]			Text (100), 
+	[end_time]			Text (100)
+);
+
+CREATE TABLE [iclock_oplog]
+ (
+	[id]			Long Integer, 
+	[SN]			Long Integer, 
+	[admin]			Long Integer, 
+	[OP]			Long Integer, 
+	[OPTime]			DateTime, 
+	[Object]			Long Integer, 
+	[Param1]			Long Integer, 
+	[Param2]			Long Integer, 
+	[Param3]			Long Integer
+);
+
+CREATE TABLE [iclock_testdata]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[dept_id]			Long Integer, 
+	[area_id]			Long Integer
+);
+
+CREATE TABLE [iclock_testdata_admin_area]
+ (
+	[id]			Long Integer, 
+	[testdata_id]			Long Integer, 
+	[area_id]			Long Integer
+);
+
+CREATE TABLE [iclock_testdata_admin_dept]
+ (
+	[id]			Long Integer, 
+	[testdata_id]			Long Integer, 
+	[department_id]			Long Integer
+);
+
+CREATE TABLE [LeaveClass]
+ (
+	[LeaveId]			Long Integer NOT NULL, 
+	[LeaveName]			Text (40) NOT NULL, 
+	[MinUnit]			Double NOT NULL, 
+	[Unit]			Integer NOT NULL, 
+	[RemaindProc]			Integer NOT NULL, 
+	[RemaindCount]			Integer NOT NULL, 
+	[ReportSymbol]			Text (8) NOT NULL, 
+	[Deduct]			Double NOT NULL, 
+	[Color]			Long Integer NOT NULL, 
+	[Classify]			Integer, 
+	[Code]			Text (32)
+);
+
+CREATE TABLE [LeaveClass1]
+ (
+	[LeaveId]			Long Integer NOT NULL, 
+	[LeaveName]			Text (40) NOT NULL, 
+	[MinUnit]			Double NOT NULL, 
+	[Unit]			Integer NOT NULL, 
+	[RemaindProc]			Integer NOT NULL, 
+	[RemaindCount]			Integer NOT NULL, 
+	[ReportSymbol]			Text (8) NOT NULL, 
+	[Deduct]			Double NOT NULL, 
+	[LeaveType]			Integer NOT NULL, 
+	[Color]			Long Integer NOT NULL, 
+	[Classify]			Integer NOT NULL, 
+	[Calc]			Memo/Hyperlink (255), 
+	[Code]			Text (32)
+);
+
+CREATE TABLE [Machines]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[ConnectType]			Long Integer, 
+	[IP]			Text (40), 
+	[SerialPort]			Long Integer, 
+	[Port]			Long Integer, 
+	[Baudrate]			Long Integer, 
+	[MachineNumber]			Long Integer NOT NULL, 
+	[IsHost]			Boolean NOT NULL, 
+	[Enabled]			Boolean NOT NULL, 
+	[CommPassword]			Text (24), 
+	[UILanguage]			Integer, 
+	[DateFormat]			Integer, 
+	[InOutRecordWarn]			Integer, 
+	[Idle]			Integer, 
+	[Voice]			Integer, 
+	[managercount]			Integer, 
+	[fingercount]			Integer, 
+	[SecretCount]			Integer, 
+	[ProductType]			Text (40), 
+	[LockControl]			Integer, 
+	[Purpose]			Integer, 
+	[ProduceKind]			Long Integer, 
+	[sn]			Text (40), 
+	[PhotoStamp]			Text (40), 
+	[IsIfChangeConfigServer2]			Long Integer, 
+	[pushver]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[device_type]			Long Integer, 
+	[last_activity]			DateTime, 
+	[trans_times]			Text (100), 
+	[TransInterval]			Long Integer, 
+	[log_stamp]			Text (100), 
+	[oplog_stamp]			OLE (255), 
+	[photo_stamp]			OLE (255), 
+	[UpdateDB]			Text (100), 
+	[device_name]			Text (100), 
+	[transaction_count]			Long Integer, 
+	[main_time]			Text (100), 
+	[max_user_count]			Long Integer, 
+	[max_finger_count]			Long Integer, 
+	[max_attlog_count]			Long Integer, 
+	[alg_ver]			Text (100), 
+	[flash_size]			Text (100), 
+	[free_flash_size]			Text (100), 
+	[language]			Text (100), 
+	[lng_encode]			Text (100), 
+	[volume]			Text (100), 
+	[is_tft]			Text (100), 
+	[platform]			Text (100), 
+	[brightness]			Text (100), 
+	[oem_vendor]			Text (100), 
+	[city]			Text (100), 
+	[AccFun]			Long Integer, 
+	[TZAdj]			Long Integer, 
+	[comm_type]			Long Integer, 
+	[agent_ipaddress]			Text (100), 
+	[subnet_mask]			Text (100), 
+	[gateway]			Text (100), 
+	[area_id]			Long Integer, 
+	[acpanel_type]			Long Integer, 
+	[sync_time]			Boolean NOT NULL, 
+	[four_to_two]			Boolean NOT NULL, 
+	[video_login]			Text (100), 
+	[fp_mthreshold]			Long Integer, 
+	[Fpversion]			Long Integer, 
+	[max_comm_size]			Long Integer, 
+	[max_comm_count]			Long Integer, 
+	[realtime]			Boolean NOT NULL, 
+	[delay]			Long Integer, 
+	[encrypt]			Boolean NOT NULL, 
+	[dstime_id]			Long Integer, 
+	[door_count]			Long Integer, 
+	[reader_count]			Long Integer, 
+	[aux_in_count]			Long Integer, 
+	[aux_out_count]			Long Integer, 
+	[IsOnlyRFMachine]			Long Integer, 
+	[alias]			Text (100), 
+	[ipaddress]			Text (100), 
+	[com_port]			Integer, 
+	[com_address]			Integer, 
+	[DeviceNetmask]			Text (32), 
+	[DeviceGetway]			Text (32), 
+	[SimpleEventType]			Integer, 
+	[FvFunOn]			Long Integer, 
+	[fvcount]			Integer, 
+	[deviceOption]			OLE (255), 
+	[DevSDKType]			Long Integer, 
+	[UTableDesc]			OLE (255), 
+	[IsTFTMachine]			Boolean NOT NULL, 
+	[PinWidth]			Long Integer, 
+	[UserExtFmt]			Long Integer, 
+	[FP1_NThreshold]			Long Integer, 
+	[FP1_1Threshold]			Long Integer, 
+	[Face1_NThreshold]			Long Integer, 
+	[Face1_1Threshold]			Long Integer, 
+	[Only1_1Mode]			Long Integer, 
+	[OnlyCheckCard]			Long Integer, 
+	[MifireMustRegistered]			Long Integer, 
+	[RFCardOn]			Long Integer, 
+	[Mifire]			Long Integer, 
+	[MifireId]			Long Integer, 
+	[NetOn]			Long Integer, 
+	[RS232On]			Long Integer, 
+	[RS485On]			Long Integer, 
+	[FreeType]			Long Integer, 
+	[FreeTime]			Long Integer, 
+	[NoDisplayFun]			Long Integer, 
+	[VoiceTipsOn]			Long Integer, 
+	[TOMenu]			Long Integer, 
+	[StdVolume]			Long Integer, 
+	[VRYVH]			Long Integer, 
+	[KeyPadBeep]			Long Integer, 
+	[BatchUpdate]			Long Integer, 
+	[CardFun]			Long Integer, 
+	[FaceFunOn]			Long Integer, 
+	[FaceCount]			Long Integer, 
+	[TimeAPBFunOn]			Long Integer, 
+	[FirmwareVersion]			Text (100), 
+	[FingerFunOn]			Text (10), 
+	[CompatOldFirmware]			Text (10), 
+	[ParamValues]			OLE (255), 
+	[WirelessSSID]			Text (100), 
+	[WirelessKey]			Text (100), 
+	[WirelessAddr]			Text (100), 
+	[WirelessMask]			Text (100), 
+	[WirelessGateWay]			Text (100), 
+	[IsWireless]			Boolean NOT NULL, 
+	[ACFun]			Long Integer, 
+	[BiometricType]			Text (200), 
+	[BiometricVersion]			Text (200), 
+	[BiometricMaxCount]			Text (200), 
+	[BiometricUsedCount]			Text (200), 
+	[WIFI]			Long Integer, 
+	[WIFIOn]			Long Integer, 
+	[WIFIDHCP]			Long Integer, 
+	[MachineAlias]			Text (100), 
+	[usercount]			Long Integer
+);
+
+CREATE TABLE [NUM_RUN]
+ (
+	[NUM_RUNID]			Long Integer NOT NULL, 
+	[OLDID]			Long Integer, 
+	[NAME]			Text (60) NOT NULL, 
+	[STARTDATE]			DateTime, 
+	[ENDDATE]			DateTime, 
+	[CYLE]			Integer, 
+	[UNITS]			Integer
+);
+
+CREATE TABLE [NUM_RUN_DEIL]
+ (
+	[NUM_RUNID]			Integer NOT NULL, 
+	[STARTTIME]			DateTime NOT NULL, 
+	[ENDTIME]			DateTime, 
+	[SDAYS]			Integer NOT NULL, 
+	[EDAYS]			Integer, 
+	[SCHCLASSID]			Long Integer, 
+	[OverTime]			Long Integer
+);
+
+CREATE TABLE [operatecmds]
+ (
+	[id]			Text (100), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[Author_id]			Text (100), 
+	[CmdContent]			Text (100), 
+	[CmdCommitTime]			DateTime, 
+	[commit_time]			DateTime, 
+	[CmdReturn]			Long Integer, 
+	[process_count]			Long Integer, 
+	[success_flag]			Long Integer, 
+	[receive_data]			Text (100), 
+	[cmm_type]			Long Integer, 
+	[cmm_system]			Long Integer
+);
+
+CREATE TABLE [personnel_area]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[areaid]			Text (100), 
+	[areaname]			Text (100), 
+	[parent_id]			Long Integer, 
+	[remark]			Text (100)
+);
+
+CREATE TABLE [personnel_cardtype]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[cardtypecode]			Text (100), 
+	[cardtypename]			Text (100)
+);
+
+CREATE TABLE [personnel_empchange]
+ (
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[changeno]			Long Integer, 
+	[UserID_id]			Long Integer, 
+	[changedate]			DateTime, 
+	[changepostion]			Long Integer, 
+	[oldvalue]			Text (100), 
+	[newvalue]			Text (100), 
+	[changereason]			Text (100), 
+	[isvalid]			Boolean NOT NULL, 
+	[approvalstatus]			Long Integer, 
+	[remark]			Text (100)
+);
+
+CREATE TABLE [personnel_leavelog]
+ (
+	[id]			Text (100), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[UserID_id]			Long Integer, 
+	[leavedate]			DateTime, 
+	[leavetype]			Long Integer, 
+	[reason]			Text (100), 
+	[isReturnTools]			Boolean NOT NULL, 
+	[isReturnClothes]			Boolean NOT NULL, 
+	[isReturnCard]			Boolean NOT NULL, 
+	[isClassAtt]			Boolean NOT NULL, 
+	[isClassAccess]			Boolean NOT NULL
+);
+
+CREATE TABLE [ReportItem]
+ (
+	[RIID]			Long Integer NOT NULL, 
+	[RIIndex]			Long Integer, 
+	[ShowIt]			Integer, 
+	[RIName]			Text (24), 
+	[UnitName]			Text (12), 
+	[Formula]			OLE (255) NOT NULL, 
+	[CalcBySchClass]			Integer, 
+	[StatisticMethod]			Integer, 
+	[CalcLast]			Integer, 
+	[Notes]			OLE (255)
+);
+
+CREATE TABLE [SchClass]
+ (
+	[schClassid]			Long Integer NOT NULL, 
+	[schName]			Text (40) NOT NULL, 
+	[StartTime]			DateTime NOT NULL, 
+	[EndTime]			DateTime NOT NULL, 
+	[LateMinutes]			Long Integer, 
+	[EarlyMinutes]			Long Integer, 
+	[CheckIn]			Long Integer, 
+	[CheckOut]			Long Integer, 
+	[Color]			Long Integer, 
+	[AutoBind]			Integer, 
+	[CheckInTime1]			DateTime, 
+	[CheckInTime2]			DateTime, 
+	[CheckOutTime1]			DateTime, 
+	[CheckOutTime2]			DateTime, 
+	[WorkDay]			Double, 
+	[SensorID]			Text (10), 
+	[WorkMins]			Double
+);
+
+CREATE TABLE [SECURITYDETAILS]
+ (
+	[SECURITYDETAILID]			Long Integer NOT NULL, 
+	[USERID]			Integer, 
+	[DEPTID]			Integer, 
+	[SCHEDULE]			Integer, 
+	[USERINFO]			Integer, 
+	[ENROLLFINGERS]			Integer, 
+	[REPORTVIEW]			Integer, 
+	[REPORT]			Text (20), 
+	[ReadOnly]			Boolean NOT NULL, 
+	[FullControl]			Boolean NOT NULL
+);
+
+CREATE TABLE [ServerLog]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[EVENT]			Text (60) NOT NULL, 
+	[USERID]			Long Integer NOT NULL, 
+	[EnrollNumber]			Text (60), 
+	[parameter]			Integer, 
+	[EVENTTIME]			DateTime NOT NULL, 
+	[SENSORID]			Text (10), 
+	[OPERATOR]			Text (40)
+);
+
+CREATE TABLE [SHIFT]
+ (
+	[SHIFTID]			Long Integer NOT NULL, 
+	[NAME]			Text (40), 
+	[USHIFTID]			Long Integer, 
+	[STARTDATE]			DateTime NOT NULL, 
+	[ENDDATE]			DateTime, 
+	[RUNNUM]			Integer, 
+	[SCH1]			Long Integer, 
+	[SCH2]			Long Integer, 
+	[SCH3]			Long Integer, 
+	[SCH4]			Long Integer, 
+	[SCH5]			Long Integer, 
+	[SCH6]			Long Integer, 
+	[SCH7]			Long Integer, 
+	[SCH8]			Long Integer, 
+	[SCH9]			Long Integer, 
+	[SCH10]			Long Integer, 
+	[SCH11]			Long Integer, 
+	[SCH12]			Long Integer, 
+	[CYCLE]			Integer, 
+	[UNITS]			Integer
+);
+
+CREATE TABLE [TBKEY]
+ (
+	[PreName]			Text (24), 
+	[ONEKEY]			Long Integer
+);
+
+CREATE TABLE [TBSMSALLOT]
+ (
+	[REFERENCE]			Long Integer NOT NULL, 
+	[SMSREF]			Long Integer NOT NULL, 
+	[USERREF]			Long Integer NOT NULL, 
+	[GENTM]			Text (40)
+);
+
+CREATE TABLE [TBSMSINFO]
+ (
+	[REFERENCE]			Long Integer NOT NULL, 
+	[SMSID]			Text (32) NOT NULL, 
+	[SMSINDEX]			Long Integer NOT NULL, 
+	[SMSTYPE]			Long Integer, 
+	[SMSCONTENT]			Memo/Hyperlink (255), 
+	[SMSSTARTTM]			Text (40), 
+	[SMSTMLENG]			Long Integer, 
+	[GENTM]			Text (40)
+);
+
+CREATE TABLE [TEMPLATE]
+ (
+	[TEMPLATEID]			Long Integer NOT NULL, 
+	[USERID]			Long Integer NOT NULL, 
+	[FINGERID]			Long Integer NOT NULL, 
+	[TEMPLATE]			OLE (255), 
+	[TEMPLATE2]			OLE (255), 
+	[BITMAPPICTURE]			OLE (255), 
+	[BITMAPPICTURE2]			OLE (255), 
+	[BITMAPPICTURE3]			OLE (255), 
+	[BITMAPPICTURE4]			OLE (255), 
+	[USETYPE]			Integer, 
+	[EMACHINENUM]			Text (6), 
+	[TEMPLATE1]			OLE (255), 
+	[Flag]			Integer, 
+	[DivisionFP]			Integer, 
+	[TEMPLATE4]			OLE (255), 
+	[TEMPLATE3]			OLE (255), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[Valid]			Long Integer, 
+	[Fpversion]			Text (100), 
+	[bio_type]			Long Integer, 
+	[SN]			Long Integer, 
+	[UTime]			DateTime, 
+	[FP10SIZE]			Long Integer, 
+	[DuressFlag]			Long Integer, 
+	[TEMPLATESIZE]			Long Integer, 
+	[StateMigrationFlag]			Text (12)
+);
+
+CREATE TABLE [USER_OF_RUN]
+ (
+	[USERID]			Long Integer NOT NULL, 
+	[NUM_OF_RUN_ID]			Long Integer NOT NULL, 
+	[STARTDATE]			DateTime NOT NULL, 
+	[ENDDATE]			DateTime NOT NULL, 
+	[ISNOTOF_RUN]			Long Integer, 
+	[ORDER_RUN]			Long Integer
+);
+
+CREATE TABLE [USER_SPEDAY]
+ (
+	[USERID]			Long Integer NOT NULL, 
+	[STARTSPECDAY]			DateTime NOT NULL, 
+	[ENDSPECDAY]			DateTime, 
+	[DATEID]			Integer NOT NULL, 
+	[YUANYING]			Text (400), 
+	[DATE]			DateTime
+);
+
+CREATE TABLE [UserACMachines]
+ (
+	[UserID]			Long Integer NOT NULL, 
+	[Deviceid]			Long Integer NOT NULL
+);
+
+CREATE TABLE [UserACPrivilege]
+ (
+	[UserID]			Long Integer NOT NULL, 
+	[DeviceID]			Long Integer NOT NULL, 
+	[ACGroupID]			Long Integer, 
+	[IsUseGroup]			Boolean NOT NULL, 
+	[TimeZone1]			Long Integer, 
+	[TimeZone2]			Long Integer, 
+	[TimeZone3]			Long Integer, 
+	[verifystyle]			Long Integer
+);
+
+CREATE TABLE [USERINFO]
+ (
+	[USERID]			Long Integer NOT NULL, 
+	[Badgenumber]			Text (100), 
+	[SSN]			Text (40), 
+	[Gender]			Text (16), 
+	[TITLE]			Text (40), 
+	[PAGER]			Text (40), 
+	[BIRTHDAY]			DateTime, 
+	[HIREDDAY]			DateTime, 
+	[street]			Text (160), 
+	[CITY]			Text (100), 
+	[STATE]			Text (100), 
+	[ZIP]			Text (100), 
+	[OPHONE]			Text (40), 
+	[FPHONE]			Text (40), 
+	[VERIFICATIONMETHOD]			Integer, 
+	[DEFAULTDEPTID]			Long Integer, 
+	[SECURITYFLAGS]			Integer, 
+	[ATT]			Integer NOT NULL, 
+	[INLATE]			Integer NOT NULL, 
+	[OUTEARLY]			Integer NOT NULL, 
+	[OVERTIME]			Integer NOT NULL, 
+	[SEP]			Integer NOT NULL, 
+	[HOLIDAY]			Integer NOT NULL, 
+	[MINZU]			Text (16), 
+	[PASSWORD]			Text (40), 
+	[LUNCHDURATION]			Integer NOT NULL, 
+	[PHOTO]			OLE (255), 
+	[mverifypass]			Text (20), 
+	[Notes]			OLE (255), 
+	[privilege]			Long Integer, 
+	[InheritDeptSch]			Integer, 
+	[InheritDeptSchClass]			Integer, 
+	[AutoSchPlan]			Integer, 
+	[MinAutoSchInterval]			Long Integer, 
+	[RegisterOT]			Integer, 
+	[InheritDeptRule]			Integer, 
+	[EMPRIVILEGE]			Integer, 
+	[CardNo]			Text (40), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[lastname]			Text (100), 
+	[AccGroup]			Long Integer, 
+	[TimeZones]			Text (100), 
+	[identitycard]			Text (100), 
+	[UTime]			DateTime, 
+	[Education]			Text (100), 
+	[OffDuty]			Long Integer, 
+	[DelTag]			Long Integer, 
+	[morecard_group_id]			Long Integer, 
+	[set_valid_time]			Boolean NOT NULL, 
+	[acc_startdate]			DateTime, 
+	[acc_enddate]			DateTime, 
+	[birthplace]			Text (100), 
+	[Political]			Text (100), 
+	[contry]			Text (100), 
+	[hiretype]			Long Integer, 
+	[email]			Text (100), 
+	[firedate]			DateTime, 
+	[isatt]			Boolean NOT NULL, 
+	[homeaddress]			Text (100), 
+	[emptype]			Long Integer, 
+	[bankcode1]			Text (100), 
+	[bankcode2]			Text (100), 
+	[isblacklist]			Long Integer, 
+	[Iuser1]			Long Integer, 
+	[Iuser2]			Long Integer, 
+	[Iuser3]			Long Integer, 
+	[Iuser4]			Long Integer, 
+	[Iuser5]			Long Integer, 
+	[Cuser1]			Text (100), 
+	[Cuser2]			Text (100), 
+	[Cuser3]			Text (100), 
+	[Cuser4]			Text (100), 
+	[Cuser5]			Text (100), 
+	[Duser1]			DateTime, 
+	[Duser2]			DateTime, 
+	[Duser3]			DateTime, 
+	[Duser4]			DateTime, 
+	[Duser5]			DateTime, 
+	[reserve]			Long Integer, 
+	[name]			Text (100), 
+	[OfflineBeginDate]			DateTime, 
+	[OfflineEndDate]			DateTime, 
+	[carNo]			Text (100), 
+	[carType]			Text (100), 
+	[carBrand]			Text (100), 
+	[carColor]			Text (100)
+);
+
+CREATE TABLE [userinfo_attarea]
+ (
+	[id]			Long Integer, 
+	[employee_id]			Long Integer, 
+	[area_id]			Long Integer
+);
+
+CREATE TABLE [UsersMachines]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[USERID]			Long Integer NOT NULL, 
+	[DEVICEID]			Long Integer NOT NULL
+);
+
+CREATE TABLE [UserUpdates]
+ (
+	[UpdateId]			Long Integer NOT NULL, 
+	[BadgeNumber]			Text (40)
+);
+
+CREATE TABLE [worktable_groupmsg]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[msgtype_id]			Long Integer, 
+	[group_id]			Long Integer
+);
+
+CREATE TABLE [worktable_instantmsg]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[monitor last time]			DateTime, 
+	[msgtype_id]			Long Integer, 
+	[content]			Text (100)
+);
+
+CREATE TABLE [worktable_msgtype]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[msgtype_name]			Text (100), 
+	[msgtype_value]			Text (100), 
+	[msg_keep_time]			Long Integer, 
+	[msg_ahead_remind]			Long Integer, 
+	[type]			Text (100)
+);
+
+CREATE TABLE [worktable_usrmsg]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[user_id]			Long Integer, 
+	[msg_id]			Text (100)
+);
+
+CREATE TABLE [ZKAttendanceMonthStatistics]
+ (
+	[Id]			Long Integer NOT NULL, 
+	[USERID]			Long Integer, 
+	[PortalSite]			Long Integer, 
+	[Department]			Long Integer, 
+	[Employee]			Long Integer, 
+	[Year]			Long Integer, 
+	[Month]			Long Integer, 
+	[YingDao]			Numeric (17), 
+	[ShiDao]			Numeric (17), 
+	[ChiDao]			Numeric (17), 
+	[ZaoTui]			Numeric (17), 
+	[KuangGong]			Numeric (17), 
+	[JiaBan]			Numeric (17), 
+	[WaiChu]			Numeric (17), 
+	[YinGongWaiChu]			Numeric (17), 
+	[GongZuoShiJian]			Numeric (17), 
+	[YingQian]			Numeric (17), 
+	[QianDao]			Numeric (17), 
+	[QianTui]			Numeric (17), 
+	[WeiQianDao]			Numeric (17), 
+	[WeiQianTui]			Numeric (17), 
+	[QingJia]			Numeric (17), 
+	[PingRi]			Numeric (17), 
+	[ZhouMo]			Numeric (17), 
+	[JieJiaRi]			Numeric (17), 
+	[ChuQinShiJian]			Numeric (17), 
+	[PingRiJiaBan]			Numeric (17), 
+	[ZhouMoJiaBan]			Numeric (17), 
+	[JieJiaRiJiaBan]			Numeric (17)
+);
+
+CREATE TABLE [acc_levelset_emp]
+ (
+	[id]			Long Integer, 
+	[acclevelset_id]			Long Integer NOT NULL, 
+	[employee_id]			Long Integer NOT NULL
+);
+
+CREATE TABLE [acc_morecardset]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[door_id]			Long Integer, 
+	[comb_name]			Text (100), 
+	[CombNo]			Long Integer
+);
+
+CREATE TABLE [ACUnlockComb]
+ (
+	[UnlockCombID]			Integer NOT NULL, 
+	[Name]			Text (60), 
+	[Group01]			Integer, 
+	[Group02]			Integer, 
+	[Group03]			Integer, 
+	[Group04]			Integer, 
+	[Group05]			Integer
+);
+
+CREATE TABLE [AttParam]
+ (
+	[PARANAME]			Text (40) NOT NULL, 
+	[PARATYPE]			Text (4), 
+	[PARAVALUE]			Text (200) NOT NULL
+);
+
+CREATE TABLE [auth_group]
+ (
+	[id]			Long Integer, 
+	[name]			Text (100), 
+	[Permission]			Memo/Hyperlink (255), 
+	[Remark]			Memo/Hyperlink (255)
+);
+
+CREATE TABLE [AUTHDEVICE]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[USERID]			Long Integer NOT NULL, 
+	[MachineID]			Long Integer NOT NULL
+);
+
+CREATE TABLE [base_option]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[name]			Text (100), 
+	[app_label]			Text (100), 
+	[catalog]			Text (100), 
+	[group]			Text (100), 
+	[widget]			Text (100), 
+	[required]			Boolean NOT NULL, 
+	[validator]			Text (100), 
+	[verbose_name]			Text (100), 
+	[help_text]			Text (100), 
+	[visible]			Boolean NOT NULL, 
+	[default]			Text (100), 
+	[read_only]			Boolean NOT NULL, 
+	[for_personal]			Boolean NOT NULL, 
+	[type]			Text (100)
+);
+
+CREATE TABLE [dbapp_viewmodel]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[model_id]			Long Integer, 
+	[name]			Text (100), 
+	[info]			Text (100), 
+	[viewtype]			Text (100)
+);
+
+CREATE TABLE [FingerVein]
+ (
+	[FVID]			Long Integer, 
+	[UserID]			Long Integer, 
+	[FingerID]			Long Integer, 
+	[Template]			OLE (255), 
+	[Size]			Long Integer, 
+	[DuressFlag]			Long Integer, 
+	[UserCode]			Text (100), 
+	[Fv_ID_Index]			Long Integer, 
+	[StateMigrationFlag]			Text (12)
+);
+
+CREATE TABLE [devlog]
+ (
+	[id]			Long Integer, 
+	[SN_id]			Long Integer, 
+	[OP]			Text (100), 
+	[Object]			Text (100), 
+	[Cnt]			Long Integer, 
+	[ECnt]			Long Integer, 
+	[OpTime]			DateTime
+);
+
+CREATE TABLE [HOLIDAYS]
+ (
+	[HOLIDAYID]			Long Integer NOT NULL, 
+	[HOLIDAYNAME]			Text (40), 
+	[HOLIDAYYEAR]			Integer, 
+	[HOLIDAYMONTH]			Integer, 
+	[HOLIDAYDAY]			Integer, 
+	[STARTTIME]			DateTime, 
+	[DURATION]			Integer, 
+	[HOLIDAYTYPE]			Integer, 
+	[XINBIE]			Text (8), 
+	[MINZU]			Text (100), 
+	[DeptID]			Integer
+);
+
+CREATE TABLE [personnel_issuecard]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[UserID_id]			Long Integer, 
+	[cardno]			Text (100), 
+	[effectivenessdate]			DateTime, 
+	[isvalid]			Boolean NOT NULL, 
+	[cardpwd]			Text (100), 
+	[failuredate]			DateTime, 
+	[cardstatus]			Text (100), 
+	[issuedate]			DateTime
+);
+
+CREATE TABLE [SystemLog]
+ (
+	[ID]			Long Integer NOT NULL, 
+	[Operator]			Text (40), 
+	[LogTime]			DateTime, 
+	[MachineAlias]			Text (40), 
+	[LogTag]			Integer, 
+	[LogDescr]			Text (100)
+);
+
+CREATE TABLE [USER_TEMP_SCH]
+ (
+	[USERID]			Long Integer NOT NULL, 
+	[COMETIME]			DateTime NOT NULL, 
+	[LEAVETIME]			DateTime NOT NULL, 
+	[TYPE]			Integer, 
+	[FLAG]			Integer, 
+	[SCHCLASSID]			Long Integer NOT NULL, 
+	[OVERTIME]			Long Integer
+);
+
+CREATE TABLE [UserUsedSClasses]
+ (
+	[UserId]			Long Integer, 
+	[SchId]			Long Integer
+);
+
+CREATE TABLE [acc_monitor_log]
+ (
+	[id]			Long Integer, 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[log_tag]			Long Integer, 
+	[time]			DateTime, 
+	[pin]			Text (100), 
+	[card_no]			Text (100), 
+	[device_id]			Long Integer, 
+	[device_sn]			Text (100), 
+	[device_name]			Text (100), 
+	[verified]			Long Integer, 
+	[state]			Long Integer, 
+	[event_type]			Long Integer, 
+	[description]			Text (400), 
+	[event_point_type]			Long Integer, 
+	[event_point_id]			Long Integer, 
+	[event_point_name]			Text (100)
+);
+
+CREATE TABLE [OfflinePermitGroups]
+ (
+	[id]			Long Integer, 
+	[GroupName]			Text (48), 
+	[BeginDate]			DateTime, 
+	[EndDate]			DateTime
+);
+
+CREATE TABLE [OfflinePermitUsers]
+ (
+	[id]			Long Integer, 
+	[GroupId]			Long Integer, 
+	[Pin]			Text (48), 
+	[ChkPwd]			Boolean NOT NULL, 
+	[ChkFp]			Boolean NOT NULL
+);
+
+CREATE TABLE [OfflinePermitDoors]
+ (
+	[id]			Long Integer, 
+	[GroupId]			Long Integer, 
+	[DeviceId]			Long Integer, 
+	[DoorNo]			Long Integer
+);
+
+CREATE TABLE [LossCard]
+ (
+	[id]			Long Integer, 
+	[Pin]			Text (40), 
+	[CardNo]			Text (100), 
+	[LossDate]			DateTime
+);
+
+CREATE TABLE [TmpPermitGroups]
+ (
+	[id]			Long Integer, 
+	[GroupName]			Text (48), 
+	[BeginDate]			DateTime, 
+	[EndDate]			DateTime
+);
+
+CREATE TABLE [TmpPermitUsers]
+ (
+	[id]			Long Integer, 
+	[GroupId]			Long Integer, 
+	[CertifiNo]			Text (100), 
+	[UserName]			Text (48), 
+	[Gender]			Text (4), 
+	[CardNo]			Text (40), 
+	[OfflineBeginDate]			DateTime, 
+	[OfflineEndDate]			DateTime
+);
+
+CREATE TABLE [TmpPermitDoors]
+ (
+	[id]			Long Integer, 
+	[GroupId]			Long Integer, 
+	[DeviceId]			Long Integer, 
+	[DoorNo]			Long Integer
+);
+
+CREATE TABLE [ParamSet]
+ (
+	[ParamName]			Text (40), 
+	[ParamValue]			Text (200)
+);
+
+CREATE TABLE [acc_reader]
+ (
+	[id]			Long Integer, 
+	[door_id]			Long Integer, 
+	[reader_no]			Long Integer, 
+	[reader_name]			Text (100), 
+	[reader_state]			Long Integer
+);
+
+CREATE TABLE [acc_auxiliary]
+ (
+	[id]			Long Integer, 
+	[device_id]			Long Integer, 
+	[aux_no]			Long Integer, 
+	[printer_number]			Text (100), 
+	[aux_name]			Text (100), 
+	[aux_state]			Long Integer
+);
+
+CREATE TABLE [STD_WiegandFmt]
+ (
+	[id]			Long Integer, 
+	[DoorId]			Long Integer, 
+	[OutWiegandFmt]			Text (200), 
+	[OutFailureId]			Long Integer, 
+	[OutAreaCode]			Long Integer, 
+	[OutPulseWidth]			Long Integer, 
+	[OutPulseInterval]			Long Integer, 
+	[OutContent]			Long Integer, 
+	[InWiegandFmt]			Text (200), 
+	[InBitCount]			Long Integer, 
+	[InPulseWidth]			Long Integer, 
+	[InPulseInterval]			Long Integer, 
+	[InContent]			Long Integer
+);
+
+CREATE TABLE [CustomReport]
+ (
+	[id]			Long Integer, 
+	[ReportName]			Text (100), 
+	[Memo]			Text (100)
+);
+
+CREATE TABLE [ReportField]
+ (
+	[CRId]			Long Integer, 
+	[TableName]			Text (100), 
+	[FieldName]			Text (100), 
+	[ShowIndex]			Long Integer
+);
+
+CREATE TABLE [BioTemplate]
+ (
+	[UserID]			Long Integer NOT NULL, 
+	[BadgeNumber]			Text (48) NOT NULL, 
+	[CreateOperator]			Text (60), 
+	[CreateTime]			DateTime, 
+	[ValidFlag]			Text (2) NOT NULL, 
+	[IsDuress]			Text (2) NOT NULL, 
+	[BioType]			Long Integer NOT NULL, 
+	[Version]			Text (40) NOT NULL, 
+	[DataFormat]			Long Integer, 
+	[TemplateNO]			Long Integer NOT NULL, 
+	[TemplateNOIndex]			Long Integer NOT NULL, 
+	[nOldType]			Long Integer, 
+	[TemplateData]			Memo/Hyperlink (255), 
+	[ID]			Long Integer
+);
+
+CREATE TABLE [FaceTempEx]
+ (
+	[TEMPLATEID]			Long Integer, 
+	[USERNO]			Text (48), 
+	[SIZE]			Long Integer, 
+	[pin]			Long Integer, 
+	[FACEID]			Long Integer, 
+	[VALID]			Long Integer, 
+	[RESERVE]			Long Integer, 
+	[ACTIVETIME]			Long Integer, 
+	[VFCOUNT]			Long Integer, 
+	[TEMPLATE]			OLE (255), 
+	[FaceType]			Byte, 
+	[StateMigrationFlag]			Text (12)
+);
+
+CREATE TABLE [FingerVeinEx]
+ (
+	[FVID]			Long Integer, 
+	[UserID]			Long Integer, 
+	[FingerID]			Long Integer, 
+	[Template]			OLE (255), 
+	[Size]			Long Integer, 
+	[DuressFlag]			Long Integer, 
+	[UserCode]			Text (100), 
+	[Fv_ID_Index]			Long Integer, 
+	[StateMigrationFlag]			Text (12)
+);
+
+CREATE TABLE [TEMPLATEEx]
+ (
+	[TEMPLATEID]			Long Integer, 
+	[USERID]			Long Integer, 
+	[FINGERID]			Long Integer, 
+	[TEMPLATE]			OLE (255), 
+	[TEMPLATE2]			OLE (255), 
+	[BITMAPPICTURE]			OLE (255), 
+	[BITMAPPICTURE2]			OLE (255), 
+	[BITMAPPICTURE3]			OLE (255), 
+	[BITMAPPICTURE4]			OLE (255), 
+	[USETYPE]			Integer, 
+	[EMACHINENUM]			Text (6), 
+	[TEMPLATE1]			OLE (255), 
+	[Flag]			Integer, 
+	[DivisionFP]			Integer, 
+	[TEMPLATE4]			OLE (255), 
+	[TEMPLATE3]			OLE (255), 
+	[change_operator]			Text (100), 
+	[change_time]			DateTime, 
+	[create_operator]			Text (100), 
+	[create_time]			DateTime, 
+	[delete_operator]			Text (100), 
+	[delete_time]			DateTime, 
+	[status]			Long Integer, 
+	[Valid]			Long Integer, 
+	[Fpversion]			Text (100), 
+	[bio_type]			Long Integer, 
+	[SN]			Long Integer, 
+	[UTime]			DateTime, 
+	[FP10SIZE]			Long Integer, 
+	[DuressFlag]			Long Integer, 
+	[TEMPLATESIZE]			Long Integer, 
+	[StateMigrationFlag]			Text (12)
+);
+
+
